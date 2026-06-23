@@ -1,0 +1,70 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    // "rootDir": "./src",
+    // "outDir": "./dist",
+
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    "module": "esnext",
+    "target": "esnext",
+    
+    //"types": [],      //CHANGED FROM ORGINAL: COMMENTED, to remove the default type definitions that TypeScript includes. This can
+                        // help reduce the number of type definitions that are included in your project, which can improve performance
+                        // and reduce the likelihood of conflicts between different type definitions. By leaving this array empty, you
+                        // can ensure that only the type definitions that you explicitly include in your project will be used, which can
+                        // help keep your project organized and maintainable.
+    // For nodejs:
+    // "lib": ["esnext"],
+    "types": ["node"],  //CHANGED FROM ORGINAL: UNCOMMENTED, to include type definitions for Node.js, which allows you to use
+                        // Node.js-specific APIs and features in your TypeScript code. This is particularly useful if your project involves
+                        // server-side development or uses Node.js modules. Make sure to have the @types/node package installed in your
+                        // project to provide the necessary type definitions for Node.js. You can install it using npm with the following
+                        // command:
+                        // and npm install -D @types/node
+
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": false, //CHANGED FROM ORGINAL: Changed from true to false, to allow optional properties to be treated as
+                        // potentially undefined, which can help prevent errors when accessing these properties without checking for their
+                        // existence first.
+
+    "resolveJsonModule": true, //PB NOTE: Added on 20260616
+    "esModuleInterop": true, //PB NOTE: Added on 20260616
+
+    // Style Options
+    // "noImplicitReturns": true,
+    // "noImplicitOverride": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noFallthroughCasesInSwitch": true,
+    // "noPropertyAccessFromIndexSignature": true,
+
+    // Recommended Options
+    "strict": true, //If the number is not a string, integer, boolean, etc. This is treated as ANY or NULL
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+  },
+  "include":  [         //CHANGED FROM ORGINAL: Added this line to specify the files that should be included in the TypeScript compilation
+                        // process. In this case, it includes the "playwright.config.ts" file, which is likely a configuration file for
+                        // Playwright tests. By including this file, you ensure that TypeScript will compile it and check for any type
+                        // errors or issues within that file as part of the overall compilation process.
+    "playwright.config.ts",
+    "module-*/**/*.ts", //THIS LINE TELLS: FILES INSIDE OF module-* FOLDER AND SUBFOLDERS MUST BE INCLUDED IN THE COMPILATION PROCESS.
+                       // THIS IS USEFUL IF YOU HAVE MULTIPLE MODULES OR PACKAGES IN YOUR PROJECT AND WANT TO INCLUDE ALL OF THEM IN THE
+                       // COMPILATION PROCESS WITHOUT HAVING TO SPECIFY EACH ONE INDIVIDUALLY.
+    "types/**/*.ts",
+    "types/**/*.d.ts",
+    "data/**/*.json"
+  ]
+}
