@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { LoginPage } from "../pages"
-import type { Market, User} from "../types";
+import { LoginPage } from "../pages";
+import type { Market, User } from "../types/";
 import marketJson from "../data/markets.json" with { type: "json" };
 import usersJson from "../data/users.json" with { type: "json" };
 
@@ -16,23 +16,35 @@ const standardUser = users.find((u) => u.username === "standard_user");
 //  nested if-else blocks
 
 if (!standardUser) {
-    throw new Error("data/users.json doesn't include a username called standard_user");
+  throw new Error(
+    "data/users.json doesn't include a username called standard_user",
+  );
 }
 
 test.describe("POM - Login per market", () => {
-    for (const market of markets) {
+  for (const market of markets) {
     //PB NOTE: "String Interpolation" is a programming technique that allows you to embed variables or expressions directly inside a
     // string literal. Instead of manually gluing text together, you use placeholders that the programming language automatically
     // replaces with their actual values at runtime
     //PB NOTE: When using a "tag", never forget to addd the "@" before the tags.
-    test(`TC-${market.code} - login + catalog in market ${market.code}`, { tag: "@smoke" }, async ({ page }) => {
+    test(
+      `TC-${market.code} - login + catalog in market ${market.code}`, { tag: "@smoke" }, async ({ page }) => {
         const loginPage = new LoginPage(page);
 
         await loginPage.navigateTo();
-        await loginPage.loginAs(standardUser, market.code)
+        await loginPage.loginAs(standardUser, market.code);
         await loginPage.expectUrlContains(/\/catalog/);
-    
-    });
+      },
+    );
   }
+});
 
+test.describe("POM - Fluent interface", () => {
+  test("Fluent", async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await loginPage.navigateTo().loginIn(standardUser.username).withPassword(standardUser.password).login();
+
+    await loginPage.expectUrlContains(/\/catalog/);
+  });
 });

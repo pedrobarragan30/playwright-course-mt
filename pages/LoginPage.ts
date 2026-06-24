@@ -32,12 +32,18 @@ export class LoginPage extends BasePage {
     }
 
     //-----------------------------------------------ACTIONS
-    async navigateTo(): Promise<void> {
-      await this.page.goto(this.path);
+    //async navigateTo(): Promise<void> {
+    //  await this.page.goto(this.path);
+    //}
+    navigateTo(): this {
+      return this.step(() => this.page.goto(this.path));
     }
 
-    async selectMarket(code: CountryCode): Promise<void> {
-      await this.marketButton(code).click();
+    //async selectMarket(code: CountryCode): Promise<void> {}
+    //  await this.marketButton(code).click();
+    //}
+    selectMarket(code: CountryCode): this{
+      return this.step(() => this.marketButton(code).click());
     }
 
     // para los siguientes métodos usamos las 2 combinaciones asegurandonos que las 2 funcionan
@@ -61,6 +67,23 @@ export class LoginPage extends BasePage {
 
       await this.selectMarket(code);
       await this.signInButton.click();
+    }
+
+    //-----------------------------------------------FLUENT INTERFACE
+    loginIn(username: string): this{
+      return this.typeInput(this.txtUsername, username);
+    }
+    
+    withPassword(password: string): this{
+      return this.typeInput(this.txtpassword, password);
+    }
+
+    andMarket(code: CountryCode): this{
+      return this.selectMarket(code);
+    }
+
+    login(): this{
+      return this.step(() => this.tid(this.btnSignIn).click());
     }
 
     //-----------------------------------------------ASSERTIONS
