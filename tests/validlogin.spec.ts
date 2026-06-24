@@ -16,11 +16,11 @@ const standardUser = users.find((u) => u.username === "standard_user");
 //  nested if-else blocks
 
 if (!standardUser) {
-  throw new Error("data/users.json doesn't include a username called standard_user");
+    throw new Error("data/users.json doesn't include a username called standard_user");
 }
 
 test.describe("POM - Login per market", () => {
-  for (const market of markets) {
+    for (const market of markets) {
     //PB NOTE: "String Interpolation" is a programming technique that allows you to embed variables or expressions directly inside a
     // string literal. Instead of manually gluing text together, you use placeholders that the programming language automatically
     // replaces with their actual values at runtime
@@ -30,7 +30,7 @@ test.describe("POM - Login per market", () => {
 
         await loginPage.navigateTo();
         await loginPage.loginAs(standardUser, market.code)
-        await loginPage.expextUrlContains(/\/catalog/);
+        await loginPage.expectUrlContains(/\/catalog/);
     
     });
   }

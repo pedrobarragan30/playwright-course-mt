@@ -109,11 +109,11 @@ test.describe("Parametrized smoke per market", () => {
     await page.getByPlaceholder("standard_user").fill("problem_user");
     await page.getByPlaceholder("••••••••").fill("pizza123");
 
-    const userName = await page.getByText("USERNAME");
-    console.log(await userName.textContent());
+    const userNameLabel = page.getByText("Username");
+    console.log(await userNameLabel.textContent());
 
-    const pleaseEnterDetails = await page.getByText("Please enter your details.", {exact: true});
-     //PB NOTE: iIf we use "exact", the text must be exact, if I use the text as "Please enter your details", the line will fail
+    const pleaseEnterDetails = page.getByText("Please enter your details.", {exact: true});
+     //PB NOTE: If we use "exact", the text must be exact, if I use the text as "Please enter your details", the line will fail
     console.log(await pleaseEnterDetails.innerHTML());
 
     await page.getByRole("button", { name: /sign in/i }).click();
