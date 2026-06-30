@@ -1,19 +1,19 @@
 import { expect, type Locator } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { CountryCode, User } from "../types";
+import type { CountryCode, User } from "../types";
 
 export class LoginPage extends BasePage {
     readonly path = "/";
     
     //-----------------------------------------------ARRANGE
     //String locator
-    // Se puede con esta forma, donde el locator es un string
+    //PB NOTE: The way where the locator is a string can be used
     private txtUsername: string = "username";
     private txtpassword: string = "password";
     private btnMarket: string = "market-";
     private btnSignIn: string = "login-button";
 
-    // Se puede esta forma usando getters y setter
+    //PB NOTE: Also the way that requires getters and setters can be used.
     private get usernameInput(): Locator {
         return this.tid(this.txtUsername);
     }
@@ -46,7 +46,7 @@ export class LoginPage extends BasePage {
       return this.step(() => this.marketButton(code).click());
     }
 
-    // para los siguientes métodos usamos las 2 combinaciones asegurandonos que las 2 funcionan
+    //PB NOTE: For the next methods the 2 combinations will be used to ensure they do work as expected
     async loginAs(user: User, code: CountryCode): Promise<void> {
       await this.typeInput(this.txtUsername, user.username);
       await this.typeInput(this.txtpassword, user.password);
