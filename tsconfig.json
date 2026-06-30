@@ -10,14 +10,14 @@
     "module": "esnext",
     "target": "esnext",
     
-    //"types": [],      //CHANGED FROM ORGINAL: COMMENTED, to remove the default type definitions that TypeScript includes. This can
+    //"types": [],      //CHANGED FROM ORIGINAL: COMMENTED, to remove the default type definitions that TypeScript includes. This can
                         // help reduce the number of type definitions that are included in your project, which can improve performance
                         // and reduce the likelihood of conflicts between different type definitions. By leaving this array empty, you
                         // can ensure that only the type definitions that you explicitly include in your project will be used, which can
                         // help keep your project organized and maintainable.
     // For nodejs:
     // "lib": ["esnext"],
-    "types": ["node"],  //CHANGED FROM ORGINAL: UNCOMMENTED, to include type definitions for Node.js, which allows you to use
+    "types": ["node"],  //CHANGED FROM ORIGINAL: UNCOMMENTED, to include type definitions for Node.js, which allows you to use
                         // Node.js-specific APIs and features in your TypeScript code. This is particularly useful if your project involves
                         // server-side development or uses Node.js modules. Make sure to have the @types/node package installed in your
                         // project to provide the necessary type definitions for Node.js. You can install it using npm with the following
@@ -31,7 +31,7 @@
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": false, //CHANGED FROM ORGINAL: Changed from true to false, to allow optional properties to be treated as
+    "exactOptionalPropertyTypes": false, //CHANGED FROM ORIGINAL: Changed from true to false, to allow optional properties to be treated as
                         // potentially undefined, which can help prevent errors when accessing these properties without checking for their
                         // existence first.
 
@@ -55,7 +55,7 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   },
-  "include":  [         //CHANGED FROM ORGINAL: Added this line to specify the files that should be included in the TypeScript compilation
+  "include":  [         //CHANGED FROM ORIGINAL: Added this line to specify the files that should be included in the TypeScript compilation
                         // process. In this case, it includes the "playwright.config.ts" file, which is likely a configuration file for
                         // Playwright tests. By including this file, you ensure that TypeScript will compile it and check for any type
                         // errors or issues within that file as part of the overall compilation process.
@@ -65,6 +65,9 @@
                        // COMPILATION PROCESS WITHOUT HAVING TO SPECIFY EACH ONE INDIVIDUALLY.
     "types/**/*.ts",
     "types/**/*.d.ts",
-    "data/**/*.json"
+    "data/**/*.json",
+    "helpers/**/*.ts",
+    "tests/**/*.ts",
+    "pages/**/*.ts"
   ]
 }
