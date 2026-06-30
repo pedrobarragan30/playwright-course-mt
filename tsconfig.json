@@ -67,7 +67,7 @@
     "types/**/*.d.ts",
     "data/**/*.json",
     "helpers/**/*.ts",
-    "tests/**/*.ts",
-    "pages/**/*.ts"
+    "tests/**/*.ts", //PB NOTE: By adding this line, some imports needs to use "type". The file BasePage.ts it's one of them.
+    "pages/**/*.ts" //PB NOTE: By adding this line, some imports needs to use "type". The file BasePage.ts it's one of them.
   ]
 }
